@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, selectCity, fetchForecast } from '../actions';
 import CitySelector from './city-selector';
 import CityResults from './city-results';
+import ForecastResults from './forecast-results';
 import { throttle } from 'lodash';
 import immutable from 'immutable';
 
@@ -18,10 +19,10 @@ class App extends Component {
     this.onCitySelectChange = value => {
       throttledSearchResponse(value);
     };
+  }
 
-    this.selectCity = city => {
-      this.props.dispatch(selectCity(city));
-    }
+  selectCity(city) {
+    this.props.dispatch(selectCity(city));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,7 +33,7 @@ class App extends Component {
     }
 
     if (!nextProps.selectedCities.equals(this.props.selectedCities)) {
-      const { dispatch, selectedCities} = nextProps;
+      const { dispatch, selectedCities } = nextProps;
       dispatch(fetchForecast(selectedCities));
     }
   }
@@ -55,12 +56,13 @@ class App extends Component {
             </Row>
             <Row>
               <Col md={12}>
+                <ForecastResults forecasts={this.props.selectedCities} display={'F'} />
               </Col>
             </Row>
           </Col>
           <Col md={4}>
           {
-            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.selectCity} />
+            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.selectCity.bind(this)} />
           }
         </Col>
         </Row>

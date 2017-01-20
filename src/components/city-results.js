@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 class CityResults extends Component {
   constructor() {
     super();
@@ -9,7 +8,7 @@ class CityResults extends Component {
     this.selectCity = (e, city) => {
       e.preventDefault();
       this.props.selectCity(city);
-    }
+    };
   }
 
   render() {

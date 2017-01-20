@@ -23,13 +23,13 @@ export const selectCity = city => {
     type: SELECT_CITY,
     zmw: city.zmw
   };
-}
+};
 
 export const foundForecasts = forecasts => {
   return {
     type: FOUND_FORECAST,
     forecasts
-  }
+  };
 };
 
 export const searchCity = textToSearch => dispatch => {
