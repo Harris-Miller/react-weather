@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { updatingSearchText, searchCity, foundCity, selectCity, fetchForecast } from '../actions';
+import { updatingSearchText, searchCity, selectCity, fetchForecast } from '../actions';
 import CitySelector from './city-selector';
 import CityResults from './city-results';
 import { throttle } from 'lodash';
@@ -20,20 +20,20 @@ class App extends Component {
     };
 
     this.selectCity = city => {
-      this.props.dispatch(foundCity([])); // to clear the search results
       this.props.dispatch(selectCity(city));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    // there as got to be a better way to go about this
+    // there has got to be a better way to go about this
     if (nextProps.textToSearch !== this.props.textToSearch) {
       const { dispatch, textToSearch } = nextProps;
       dispatch(searchCity(textToSearch));
     }
 
     if (!nextProps.selectedCities.equals(this.props.selectedCities)) {
-      console.log(nextProps.selectedCities);
+      const { dispatch, selectedCities} = nextProps;
+      dispatch(fetchForecast(selectedCities));
     }
   }
 
@@ -41,23 +41,28 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <Col lg={12}>
+          <Col md={12}>
             <h1>Welcome to the Pairin Weather Search App!</h1>
             <h3>Do a search for your city below to view the weather!</h3>
           </Col>
         </Row>
         <Row>
-          <Col lg={4}>
-            <CitySelector onChange={this.onCitySelectChange} />
-            <span>{this.props.textToSearch}</span>
+          <Col md={8}>
+            <Row>
+              <Col md={3} mdOffset={3}>
+                <CitySelector onChange={this.onCitySelectChange} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+              </Col>
+            </Row>
           </Col>
-        </Row>
-        <Row>
-          <Col lg={4}>
-            {
-              !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.selectCity} />
-            }
-          </Col>
+          <Col md={4}>
+          {
+            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.selectCity} />
+          }
+        </Col>
         </Row>
       </Grid>
     );
@@ -65,13 +70,12 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { searchByCity } = state;
+  const { searchByCity, forecast } = state;
 
   return {
-    textToSearch: searchByCity.textToSearch || '',
-    isFetchingCitySearch: searchByCity.isFetching || false,
-    cityResults: new immutable.List(searchByCity.cityResults || []),
-    selectedCities: new immutable.List()
+    textToSearch: searchByCity.get('textToSearch') || '',
+    cityResults: searchByCity.get('cityResults') || new immutable.List(),
+    selectedCities: forecast.get('selectedCities') || new immutable.Map()
   };
 };
 

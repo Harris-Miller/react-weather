@@ -17,7 +17,7 @@ class CityResults extends Component {
       <ul>
         {
           this.props.cityResults.map(city => (
-            <li>
+            <li key={city.zmw}>
               <a onClick={e => this.selectCity(e, city)}>{city.name}</a>
             </li>
           ))

@@ -1,20 +1,13 @@
 import { ajax } from 'jquery';
 
 export const UPDATING_SEARCH_TEXT = 'UPDATING_SEARCH_TEXT';
-export const SEARCHING_CITIES = 'SEARCHING_CITIES';
 export const FOUND_CITIES = 'FOUND_CITIES';
 export const SELECT_CITY = 'SELECT_CITY';
-export const SEARCHING_FORECAST = 'SEARCHING_FORECAST';
 export const FOUND_FORECAST = 'FOUND_FORECAST';
 export const REMOVE_FORECAST = 'REMOVE_FORECAST';
 
 export const updatingSearchText = textToSearch => ({
   type: UPDATING_SEARCH_TEXT,
-  textToSearch
-});
-
-export const fetchingCity = textToSearch => ({
-  type: SEARCHING_CITIES,
   textToSearch
 });
 
@@ -25,26 +18,21 @@ export const foundCity = cityResults => {
   };
 };
 
-export const searchingForecast = () => {
+export const selectCity = city => {
   return {
-    type: SEARCHING_FORECAST
+    type: SELECT_CITY,
+    zmw: city.zmw
   };
-};
+}
 
-export const foundForecast = forecast => {
+export const foundForecasts = forecasts => {
   return {
     type: FOUND_FORECAST,
-    forecast
+    forecasts
   }
 };
 
-export const selectCity = city => dispatch => {
-  dispatch(searchingForecast());
-}
-
 export const searchCity = textToSearch => dispatch => {
-  dispatch(fetchingCity());
-
   // would have liked to use fetch here, but I needed to use jsonp due to CORS, so jquery.ajax it is!
   return ajax(`http://autocomplete.wunderground.com/aq?query=${textToSearch}&c=US`, {
     dataType: 'jsonp',
@@ -56,15 +44,18 @@ export const searchCity = textToSearch => dispatch => {
   });
 };
 
-export const fetchForecast = city => dispatch => {
-  dispatch(searchingForecast());
+export const fetchForecast = cities => dispatch => {
+  // cities here is a map, if the value has already been set, we just skip it
+  const cityPromises = cities.filter(city => !city).mapEntries(([key, value]) => {
+    return [key, ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/forecast/geolookup/forecast/q/zmw:${key}.json`, {
+      dataType: 'jsonp',
+      //jsonp: 'cb',
+      method: 'GET',
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    })];
+  });
 
-  return ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/forecast/geolookup/forecast/q/zmw:${city.zmw}.json`, {
-    dataType: 'jsonp',
-    jsonp: 'cb',
-    method: 'GET',
-    headers: { 'Access-Control-Allow-Origin': '*' }
-  }).then(forecastResults => {
-    return dispatch(foundForecast(forecastResults));
+  return Promise.all(cityPromises.valueSeq()).then(results => {
+    dispatch(foundForecasts(results));
   });
 };
