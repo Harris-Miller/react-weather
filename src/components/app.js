@@ -6,6 +6,7 @@ import CitySelector from './city-selector';
 import CityResults from './city-results';
 import ForecastResults from './forecast-results';
 import TempDisplaySelect from './temp-display-select';
+import ForecastChart from './forecast-chart';
 import { throttle } from 'lodash';
 import immutable from 'immutable';
 
@@ -69,6 +70,11 @@ class App extends Component {
             <Row>
               <Col md={12}>
                 <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+                <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
               </Col>
             </Row>
           </Col>
