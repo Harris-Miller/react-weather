@@ -1,7 +1,23 @@
 @import '../node_modules/normalize-css/normalize.css';
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
-/* @import '../node_modules/bootstrap/dist/css/bootstrap-theme.css'; */
+@import '../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 
 body {
 	background-color: #e9ebee;
+}
+
+/* solid variables */
+@red: #FF4136;
+@blue: #0074D9;
+
+/* contextual variables */
+@temp-high: @red;
+@temp-low: @blue;
+
+.temp-high {
+	color: @temp-high;
+}
+
+.temp-low {
+	color: @temp-low;
 }

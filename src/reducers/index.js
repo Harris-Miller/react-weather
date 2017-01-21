@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import immutable from 'immutable';
-import { UPDATING_SEARCH_TEXT, FOUND_CITIES, SELECT_CITY, FOUND_FORECAST, REMOVE_FORECAST } from '../actions';
+import { UPDATING_SEARCH_TEXT, FOUND_CITIES, SELECT_CITY, FOUND_FORECAST, REMOVE_FORECAST, UPDATE_DISPLAY_TEMP } from '../actions';
 
 const searchByCity = (state = new immutable.Map(), action) => {
   switch (action.type) {
@@ -42,9 +42,19 @@ const forecast = (state = new immutable.Map({ selectedCities: new immutable.Map(
   }
 };
 
+const displayTemp = (state = new immutable.Map({ display: 'F'} ), action) => {
+  switch (action.type) {
+    case (UPDATE_DISPLAY_TEMP):
+      return state.set('display', action.display);
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   searchByCity,
-  forecast
+  forecast,
+  displayTemp
 });
 
 export default rootReducer;

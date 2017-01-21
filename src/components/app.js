@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { updatingSearchText, searchCity, selectCity, fetchForecast, removeForecast } from '../actions';
+import { updatingSearchText, searchCity, selectCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
 import CitySelector from './city-selector';
 import CityResults from './city-results';
 import ForecastResults from './forecast-results';
+import TempDisplaySelect from './temp-display-select';
 import { throttle } from 'lodash';
 import immutable from 'immutable';
 
@@ -27,6 +28,10 @@ class App extends Component {
 
   removeForecast(zmw) {
     this.props.dispatch(removeForecast(zmw));
+  }
+
+  changeTempDisplay(temp) {
+    this.props.dispatch(updateTempDisplay(temp));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,13 +59,16 @@ class App extends Component {
         <Row>
           <Col md={8}>
             <Row>
-              <Col md={3} mdOffset={3}>
+              <Col md={4}>
+                <TempDisplaySelect display={this.props.display} changeTempDisplay={this.changeTempDisplay.bind(this)} />
+              </Col>
+              <Col md={4}>
                 <CitySelector onChange={this.onCitySelectChange} />
               </Col>
             </Row>
             <Row>
               <Col md={12}>
-                <ForecastResults forecasts={this.props.selectedCities} display={'F'} removeForecast={this.removeForecast.bind(this)} />
+                <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
               </Col>
             </Row>
           </Col>
@@ -76,12 +84,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { searchByCity, forecast } = state;
+  const { searchByCity, forecast, displayTemp } = state;
 
   return {
     textToSearch: searchByCity.get('textToSearch') || '',
     cityResults: searchByCity.get('cityResults') || new immutable.List(),
-    selectedCities: forecast.get('selectedCities') || new immutable.Map()
+    selectedCities: forecast.get('selectedCities') || new immutable.Map(),
+    display: displayTemp.get('display')
   };
 };
 

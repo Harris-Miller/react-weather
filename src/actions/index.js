@@ -5,6 +5,7 @@ export const FOUND_CITIES = 'FOUND_CITIES';
 export const SELECT_CITY = 'SELECT_CITY';
 export const FOUND_FORECAST = 'FOUND_FORECAST';
 export const REMOVE_FORECAST = 'REMOVE_FORECAST';
+export const UPDATE_DISPLAY_TEMP = 'UPDATE_DISPLAY_TEMP';
 
 export const updatingSearchText = textToSearch => ({
   type: UPDATING_SEARCH_TEXT,
@@ -36,6 +37,13 @@ export const foundForecasts = forecasts => {
   return {
     type: FOUND_FORECAST,
     forecasts
+  };
+};
+
+export const updateTempDisplay = display => {
+  return {
+    type: UPDATE_DISPLAY_TEMP,
+    display
   };
 };
 
