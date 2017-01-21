@@ -105,7 +105,7 @@ class ForecastChart extends Component {
       this.refreshSeries(nextProps);
     }
 
-    if (!nextProps.display !== this.props.display) {
+    if (nextProps.display !== this.props.display) {
       this.setYAxisTitle(nextProps);
       this.refreshSeries(nextProps);
     }
