@@ -30,8 +30,8 @@ class App extends Component {
     this.props.dispatch(removeForecast(zmw));
   }
 
-  changeTempDisplay(temp) {
-    this.props.dispatch(updateTempDisplay(temp));
+  changeTempDisplay(display) {
+    this.props.dispatch(updateTempDisplay(display));
   }
 
   componentWillReceiveProps(nextProps) {
