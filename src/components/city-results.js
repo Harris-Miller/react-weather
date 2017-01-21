@@ -13,15 +13,18 @@ class CityResults extends Component {
 
   render() {
     return (
-      <ul>
-        {
-          this.props.cityResults.map(city => (
-            <li key={city.zmw}>
-              <a onClick={e => this.selectCity(e, city)}>{city.name}</a>
-            </li>
-          ))
-        }
-      </ul>
+      <div className="card">
+        <h3>Results will display below<br/><small>(click to display forecast)</small></h3>
+        <ul>
+          {
+            this.props.cityResults.map(city => (
+              <li key={city.zmw}>
+                <a onClick={e => this.selectCity(e, city)}>{city.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     );
   }
 }

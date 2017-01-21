@@ -25,7 +25,7 @@ class ForecastResults extends Component {
     return (
       <div>
         {this.mapForecasts(([zmw, forecast]) => (
-          <Row key={zmw}>
+          <Row key={zmw} className="card">
             <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>
             {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
               <Col md={2} key={forecastday.date.epoch}>

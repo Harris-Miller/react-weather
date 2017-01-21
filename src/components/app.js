@@ -82,10 +82,8 @@ class App extends Component {
             </Row>
           </Col>
           <Col md={4}>
-          {
-            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
-          }
-        </Col>
+            <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
+          </Col>
         </Row>
       </Grid>
     );
