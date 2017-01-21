@@ -2,8 +2,7 @@ import { ajax } from 'jquery';
 
 export const UPDATING_SEARCH_TEXT = 'UPDATING_SEARCH_TEXT';
 export const FOUND_CITIES = 'FOUND_CITIES';
-export const SELECT_CITY = 'SELECT_CITY';
-export const FOUND_FORECAST = 'FOUND_FORECAST';
+export const ADD_FORECAST = 'ADD_FORECAST';
 export const REMOVE_FORECAST = 'REMOVE_FORECAST';
 export const UPDATE_DISPLAY_TEMP = 'UPDATE_DISPLAY_TEMP';
 
@@ -19,13 +18,6 @@ export const foundCity = cityResults => {
   };
 };
 
-export const selectCity = city => {
-  return {
-    type: SELECT_CITY,
-    zmw: city.zmw
-  };
-};
-
 export const removeForecast = zmw => {
   return {
     type: REMOVE_FORECAST,
@@ -33,10 +25,10 @@ export const removeForecast = zmw => {
   };
 };
 
-export const foundForecasts = forecasts => {
+export const addForecast = forecast => {
   return {
-    type: FOUND_FORECAST,
-    forecasts
+    type: ADD_FORECAST,
+    forecast
   };
 };
 
@@ -54,23 +46,14 @@ export const searchCity = textToSearch => dispatch => {
     jsonp: 'cb',
     method: 'GET',
     headers: { 'Access-Control-Allow-Origin': '*' }
-  }).then(cityResults => {
-    return dispatch(foundCity(cityResults.RESULTS));
-  });
+  }).then(cityResults => dispatch(foundCity(cityResults.RESULTS)));
 };
 
-export const fetchForecast = cities => dispatch => {
-  // cities here is a map, if the value has already been set, we just skip it
-  const cityPromises = cities.filter(city => !city).mapEntries(([key, value]) => {
-    return [key, ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/forecast/geolookup/forecast/q/zmw:${key}.json`, {
-      dataType: 'jsonp',
-      //jsonp: 'cb',
-      method: 'GET',
-      headers: { 'Access-Control-Allow-Origin': '*' }
-    })];
-  });
-
-  return Promise.all(cityPromises.valueSeq()).then(results => {
-    dispatch(foundForecasts(results));
-  });
+export const fetchForecast = zmw => dispatch => {
+  return ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/forecast/geolookup/hourly/q/zmw:${zmw}.json`, {
+    dataType: 'jsonp',
+    //jsonp: 'cb',
+    method: 'GET',
+    headers: { 'Access-Control-Allow-Origin': '*' }
+  }).then(forecast => dispatch(addForecast(forecast)));
 };

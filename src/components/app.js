@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { updatingSearchText, searchCity, selectCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
+import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
 import CitySelector from './city-selector';
 import CityResults from './city-results';
 import ForecastResults from './forecast-results';
@@ -23,8 +23,11 @@ class App extends Component {
     };
   }
 
-  selectCity(city) {
-    this.props.dispatch(selectCity(city));
+  fetchForecast(zmw) {
+    // only if Forecast has not yet been fetched
+    if (!this.props.selectedCities.has(zmw)) {
+      this.props.dispatch(fetchForecast(zmw));
+    }
   }
 
   removeForecast(zmw) {
@@ -42,10 +45,10 @@ class App extends Component {
       dispatch(searchCity(textToSearch));
     }
 
-    if (!nextProps.selectedCities.equals(this.props.selectedCities)) {
-      const { dispatch, selectedCities } = nextProps;
-      dispatch(fetchForecast(selectedCities));
-    }
+    // if (!nextProps.selectedCities.equals(this.props.selectedCities)) {
+    //   const { dispatch, selectedCities } = nextProps;
+    //   dispatch(fetchForecast(selectedCities));
+    // }
   }
 
   render() {
@@ -80,7 +83,7 @@ class App extends Component {
           </Col>
           <Col md={4}>
           {
-            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.selectCity.bind(this)} />
+            !!this.props.cityResults.size && <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
           }
         </Col>
         </Row>

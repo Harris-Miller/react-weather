@@ -56,7 +56,6 @@ class HighLowChart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.forecasts.toJS());
     if (!nextProps.forecasts.equals(this.props.forecasts)) {
       this.setHasData(nextProps);
       this.setConfig();

@@ -7,7 +7,7 @@ class CityResults extends Component {
 
     this.selectCity = (e, city) => {
       e.preventDefault();
-      this.props.selectCity(city);
+      this.props.selectCity(city.zmw);
     };
   }
 
