@@ -25,6 +25,13 @@ export const selectCity = city => {
   };
 };
 
+export const removeForecast = zmw => {
+  return {
+    type: REMOVE_FORECAST,
+    zmw
+  };
+};
+
 export const foundForecasts = forecasts => {
   return {
     type: FOUND_FORECAST,

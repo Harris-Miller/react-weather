@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { updatingSearchText, searchCity, selectCity, fetchForecast } from '../actions';
+import { updatingSearchText, searchCity, selectCity, fetchForecast, removeForecast } from '../actions';
 import CitySelector from './city-selector';
 import CityResults from './city-results';
 import ForecastResults from './forecast-results';
@@ -23,6 +23,10 @@ class App extends Component {
 
   selectCity(city) {
     this.props.dispatch(selectCity(city));
+  }
+
+  removeForecast(zmw) {
+    this.props.dispatch(removeForecast(zmw));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,7 +60,7 @@ class App extends Component {
             </Row>
             <Row>
               <Col md={12}>
-                <ForecastResults forecasts={this.props.selectedCities} display={'F'} />
+                <ForecastResults forecasts={this.props.selectedCities} display={'F'} removeForecast={this.removeForecast.bind(this)} />
               </Col>
             </Row>
           </Col>

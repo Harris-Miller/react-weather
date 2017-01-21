@@ -34,10 +34,9 @@ const forecast = (state = new immutable.Map({ selectedCities: new immutable.Map(
       }));
 
       // merge with state and return
-      return state.set('selectedCities', state.get('selectedCities').merge(forecasts));
+      return state.mergeIn(['selectedCities'], forecasts);
     case (REMOVE_FORECAST):
-      // TODO
-      return state;
+      return state.deleteIn(['selectedCities', action.zmw]);
     default:
       return state;
   }
