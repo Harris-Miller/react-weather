@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
-import CitySelector from './city-selector';
-import CityResults from './city-results';
-import ForecastResults from './forecast-results';
-import TempDisplaySelect from './temp-display-select';
-import ForecastChart from './forecast-chart';
+import CitySelector from '../components/city-selector';
+import CityResults from '../components/city-results';
+import ForecastResults from '../components/forecast-results';
+import TempDisplaySelect from '../components/temp-display-select';
+import ForecastChart from '../components/forecast-chart';
 import { throttle } from 'lodash';
 import immutable from 'immutable';
 

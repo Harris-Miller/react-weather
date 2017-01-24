@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import App from './components/app';
+import App from './containers/app';
 
 require('./style.less');
 

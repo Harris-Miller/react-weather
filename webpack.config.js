@@ -7,11 +7,11 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    './src/index.js'
+    './src/index.jsx'
   ],
   module: {
     loaders: [{
-      test: /\.js?$/,
+      test: /(\.js|\.jsx)?$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
     }, {
@@ -24,7 +24,7 @@ module.exports = {
     { test: /\.svg$/, loader: 'file-loader' }]
   },
   resolve: {
-    extenstions: ['', '.js']
+    extensions: ['', '.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
