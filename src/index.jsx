@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import App from './containers/app';
+import Index from './containers/index';
+import Forecast from './containers/forecast';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import immutable from 'immutable';
@@ -20,7 +22,10 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={App} />
+        <Route path="/" component={App}>
+          <IndexRoute component={Index} />
+          <Route path="forecast" component={Forecast} />
+        </Route>
       </Router>
     </MuiThemeProvider>
   </Provider>,

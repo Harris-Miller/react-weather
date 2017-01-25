@@ -31,8 +31,8 @@ const configConstants = {
 };
 
 class ForecastChart extends Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.config = Object.assign({}, configConstants);
     // this.assignTestData();
   }

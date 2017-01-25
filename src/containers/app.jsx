@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
+import Navbar from '../components/navbar';
 import CitySelector from '../components/city-selector';
 import CityResults from '../components/city-results';
 import ForecastResults from '../components/forecast-results';
@@ -53,39 +54,43 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <h1>Welcome to the Pairin Weather Search App!</h1>
-            <h3>Do a search for your city below to view the weather!</h3>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={8}>
-            <Row>
-              <Col md={4}>
-                <TempDisplaySelect display={this.props.display} changeTempDisplay={this.changeTempDisplay.bind(this)} />
-              </Col>
-              <Col md={4}>
-                <CitySelector onChange={this.onCitySelectChange} />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
-              </Col>
-            </Row>
-          </Col>
-          <Col md={4}>
-            <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        <Navbar />
+        <Grid>
+          {this.props.children}
+          <Row>
+            <Col md={12}>
+              <h1>Welcome to the Pairin Weather Search App!</h1>
+              <h3>Do a search for your city below to view the weather!</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={8}>
+              <Row>
+                <Col md={4}>
+                  <TempDisplaySelect display={this.props.display} changeTempDisplay={this.changeTempDisplay.bind(this)} />
+                </Col>
+                <Col md={4}>
+                  <CitySelector onChange={this.onCitySelectChange} />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
+                </Col>
+              </Row>
+            </Col>
+            <Col md={4}>
+              <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }

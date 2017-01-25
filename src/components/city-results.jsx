@@ -3,8 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Card } from 'material-ui';
 
 class CityResults extends Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
 
     this.selectCity = (e, city) => {
       e.preventDefault();
