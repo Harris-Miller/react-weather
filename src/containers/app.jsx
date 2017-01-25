@@ -94,9 +94,9 @@ const mapStateToProps = state => {
   const { searchByCity, forecast, displayTemp } = state;
 
   return {
-    textToSearch: searchByCity.get('textToSearch') || '',
-    cityResults: searchByCity.get('cityResults') || new immutable.List(),
-    selectedCities: forecast.get('selectedCities') || new immutable.Map(),
+    textToSearch: searchByCity.get('textToSearch'),
+    cityResults: searchByCity.get('cityResults'),
+    selectedCities: forecast.get('selectedCities'),
     display: displayTemp.get('display')
   };
 };

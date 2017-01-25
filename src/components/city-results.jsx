@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Card } from 'material-ui';
 
 class CityResults extends Component {
   constructor() {
@@ -13,18 +14,16 @@ class CityResults extends Component {
 
   render() {
     return (
-      <div className="card">
+      <Card>
         <h3>Results will display below<br/><small>(click to display forecast)</small></h3>
         <ul>
-          {
-            this.props.cityResults.map(city => (
-              <li key={city.zmw}>
-                <a onClick={e => this.selectCity(e, city)}>{city.name}</a>
-              </li>
-            ))
-          }
+          {this.props.cityResults.map(city => (
+            <li key={city.zmw}>
+              <a onClick={e => this.selectCity(e, city)}>{city.name}</a>
+            </li>
+          )).valueSeq()}
         </ul>
-      </div>
+      </Card>
     );
   }
 }

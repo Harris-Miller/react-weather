@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SingleDayForecast from './single-day-forecast';
+import { Card } from 'material-ui';
 
 class ForecastResults extends Component {
   getForecasts() {
@@ -25,17 +26,19 @@ class ForecastResults extends Component {
     return (
       <div>
         {this.mapForecasts(([zmw, forecast]) => (
-          <Row key={zmw} className="card">
-            <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>
-            {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
-              <Col md={2} key={forecastday.date.epoch}>
-                <SingleDayForecast forecast={forecastday} display={this.props.display} />
+          <Card key={zmw}>
+            <Row>
+              <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>
+                {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
+                  <Col md={2} key={forecastday.date.epoch}>
+                    <SingleDayForecast forecast={forecastday} display={this.props.display} />
+                  </Col>
+                ))}
+              <Col md={2}>
+                <a onClick={e => this.removeForecast(e, zmw)}>Remove</a>
               </Col>
-            ))}
-            <Col md={2}>
-              <a onClick={e => this.removeForecast(e, zmw)}>Remove</a>
-            </Col>
-          </Row>
+            </Row>
+          </Card>
         ))}
       </div>
     );
