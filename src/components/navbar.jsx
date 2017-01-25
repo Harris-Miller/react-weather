@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { noop } from '../utils/common-functions';
+import { noop } from '../utils';
 
 class WeatherNavbar extends Component {
   constructor(props) {

@@ -27,7 +27,6 @@ class CitySelector extends Component {
           id: city.zmw, label: city.name
         })).valueSeq().toJS()
       });
-      console.log(this.state);
     }
   }
 
@@ -48,7 +47,7 @@ class CitySelector extends Component {
 
 CitySelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  searchResults: ImmutablePropTypes.list.isRequired,
+  searchResults: ImmutablePropTypes.map.isRequired,
 };
 
 export default CitySelector;

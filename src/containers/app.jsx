@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
 import { mapStateToProps } from '../reducers';
 import Navbar from '../components/navbar';
+import SelectedCities from '../components/selected-cities';
 import CitySelector from '../components/city-selector';
-import CityResults from '../components/city-results';
 import ForecastResults from '../components/forecast-results';
 import ForecastChart from '../components/forecast-chart';
 import { throttle } from 'lodash';
@@ -59,6 +59,11 @@ class App extends Component {
       <div>
         <Navbar display={this.props.display} changeTempDisplay={this.changeTempDisplay} />
         <Grid>
+          <Row>
+            <Col md={12}>
+              <SelectedCities />
+            </Col>
+          </Row>
           <Row>
             {this.props.children}
           </Row>
