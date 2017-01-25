@@ -14,14 +14,15 @@ class App extends Component {
     super(props);
 
     this.changeTempDisplay = this.changeTempDisplay.bind(this);
+    this.onCitySelectChange = this.onCitySelectChange.bind(this);
 
-    const throttledSearchResponse = throttle(value => {
+    this.throttledSearchResponse = throttle(value => {
       this.props.dispatch(updatingSearchText(value));
     }, 600);
+  }
 
-    this.onCitySelectChange = value => {
-      throttledSearchResponse(value);
-    };
+  onCitySelectChange(value) {
+    this.throttledSearchResponse(value);
   }
 
   fetchForecast(zmw) {

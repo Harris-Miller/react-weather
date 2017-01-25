@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 const CitySelector = ({ onChange }) => (
-  <form>
+  <form onSubmit={e => e.preventDefault()}>
     <FormGroup controlId="citySearch">
       <ControlLabel>Search for a City</ControlLabel>
       <FormControl
