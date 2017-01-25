@@ -1,16 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Button, Badge, Glyphicon } from 'react-bootstrap';
+import { Button, Badge, Glyphicon, Panel } from 'react-bootstrap';
 import noop from '../utils';
 
 class SelectedCities extends Component {
-  getCities() {
-    return this.props.cities.toJS();
-  }
 
   mapCities(exp) {
-    const cities = this.getCities();
-    return Object.keys(cities).map(zmw => exp([zmw, cities[zmw]]));
+    return this.props.cities.entrySeq().toArray().map(exp);
   }
 
   removeCity(zwm) {
@@ -20,11 +16,17 @@ class SelectedCities extends Component {
   render() {
     return (
       <div>
-        {this.mapCities(([zmw, city]) => (
-          <Button key={zmw} bsStyle="primary" onClick={() => this.removeCity(zmw)}>
-            {city.location.city}, {city.location.state} <Badge><Glyphicon glyph="remove" /></Badge>
-          </Button>
-        ))}
+        {this.props.cities.size ? <Panel>
+          <h3>Selected Cities</h3>
+          {this.mapCities(([zmw, city]) => (
+            <span key={zmw}>
+              <Button bsStyle="primary" onClick={() => this.removeCity(zmw)}>
+                {city.location.city}, {city.location.state} <Badge><Glyphicon glyph="remove" /></Badge>
+              </Button>
+              <span>&nbsp;</span>
+            </span>
+          ))}
+        </Panel> : ''}
       </div>
     );
   }
