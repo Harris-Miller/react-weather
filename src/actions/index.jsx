@@ -11,10 +11,10 @@ export const updatingSearchText = textToSearch => ({
   textToSearch
 });
 
-export const foundCity = cityResults => {
+export const foundCity = citySearchResults => {
   return {
     type: FOUND_CITIES,
-    cityResults
+    citySearchResults
   };
 };
 

@@ -8,7 +8,7 @@ export const mapStateToProps = state => {
 
   return {
     textToSearch: searchByCity.get('textToSearch'),
-    cityResults: searchByCity.get('cityResults'),
+    citySearchResults: searchByCity.get('citySearchResults'),
     selectedCities: forecast.get('selectedCities'),
     display: displayTemp.get('display')
   };
@@ -16,12 +16,12 @@ export const mapStateToProps = state => {
 
 // now define all the reducers
 
-const searchByCity = (state = new immutable.Map({ textToSearch: '', cityResults: new immutable.Map() }), action) => {
+const searchByCity = (state = new immutable.Map({ textToSearch: '', citySearchResults: new immutable.Map() }), action) => {
   switch (action.type) {
     case (UPDATING_SEARCH_TEXT):
       return state.set('textToSearch', action.textToSearch);
     case (FOUND_CITIES):
-      return state.set('cityResults', new immutable.List(action.cityResults));
+      return state.set('citySearchResults', new immutable.List(action.citySearchResults));
     default:
       return state;
   }

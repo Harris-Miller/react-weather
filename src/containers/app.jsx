@@ -66,7 +66,7 @@ class App extends Component {
             <Col md={8}>
               <Row>
                 <Col md={4} mdPush={4}>
-                  <CitySelector onChange={this.onCitySelectChange} />
+                  <CitySelector onChange={this.onCitySelectChange} searchResults={this.props.citySearchResults} selectCity={this.fetchForecast.bind(this)} />
                 </Col>
               </Row>
               <Row>
@@ -79,9 +79,6 @@ class App extends Component {
                   <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
                 </Col>
               </Row>*/}
-            </Col>
-            <Col md={4}>
-              <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
             </Col>
           </Row>
         </Grid>
