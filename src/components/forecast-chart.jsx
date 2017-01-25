@@ -66,16 +66,6 @@ class ForecastChart extends Component {
     this.getChart().yAxis[0].update({ title: { text: `Temperature ${props.display === 'F' ? '°F' : '°C'}` } }, true);
   }
 
-  buildDateFromFCTTime(FCTTIME) {
-    // new Date(year, month[, date[, hours[, minutes[, seconds[, milliseconds]]]]]);
-    return Date.UTC(
-      +FCTTIME.year,
-      (+FCTTIME.mon) - 1,
-      +FCTTIME.mday,
-      (+FCTTIME.hour)
-    );
-  }
-
   removeAllSeries() {
     const chart = this.getChart();
     while (chart.series.length) {
@@ -89,10 +79,11 @@ class ForecastChart extends Component {
     // frist, remove all existing series, as we want to redraw them
     this.removeAllSeries();
 
+    // FCTTIME.epoch is in seconds, not milliseconds, thus the * 1000
     props.forecasts.forEach(forecast => {
       const newSeries = {
         name: `${forecast.location.city}, ${forecast.location.state}`,
-        data: forecast.hourly_forecast.map(hourly => [this.buildDateFromFCTTime(hourly.FCTTIME), props.display === 'F' ? +hourly.temp.english : +hourly.temp.metric])
+        data: forecast.hourly_forecast.map(hourly => [new Date(hourly.FCTTIME.epoch * 1000), props.display === 'F' ? +hourly.temp.english : +hourly.temp.metric])
       };
       chart.addSeries(newSeries, false);
     });

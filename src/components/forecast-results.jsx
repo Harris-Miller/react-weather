@@ -5,15 +5,6 @@ import SingleDayForecast from './single-day-forecast';
 import noop from '../utils';
 
 class ForecastResults extends Component {
-  getForecasts() {
-    return this.props.forecasts.toJS();
-  }
-
-  mapForecasts(exp) {
-    const forecasts = this.getForecasts();
-    return Object.keys(forecasts).filter(zmw => forecasts[zmw]).map(zmw => exp([zmw, forecasts[zmw]]));
-  }
-
   removeForecast(e, zmw) {
     e.preventDefault();
     this.props.removeForecast(zmw);
@@ -25,7 +16,7 @@ class ForecastResults extends Component {
   render() {
     return (
       <div>
-        {this.mapForecasts(([zmw, forecast]) => (
+        {this.props.forecasts.entrySeq().toArray().map(([zmw, forecast]) => (
           <Panel key={zmw}>
             <Row>
               <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>

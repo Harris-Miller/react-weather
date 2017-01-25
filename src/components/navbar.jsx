@@ -10,10 +10,6 @@ class WeatherNavbar extends Component {
     this.changeTempDisplay = this.changeTempDisplay.bind(this);
   }
 
-  isFahrenheit() {
-    return this.props.display === 'F';
-  }
-
   changeTempDisplay(e) {
     this.props.changeTempDisplay(e.target.value);
   }
@@ -25,6 +21,8 @@ class WeatherNavbar extends Component {
    *   That should be designed better, but I'm using bootstrap here and don't feel like doing crazy customization for a demo
    */
   render() {
+    const isFahrenheit = this.props.display === 'F';
+
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -41,8 +39,8 @@ class WeatherNavbar extends Component {
           </Nav>
           <Nav pullRight>
             <li>
-              <Button onClick={this.changeTempDisplay} value="F" bsStyle={this.isFahrenheit() ? 'primary' : 'default'} className="navbar-btn">Fahrenheit</Button>
-              <Button onClick={this.changeTempDisplay} value="C" bsStyle={!this.isFahrenheit() ? 'primary' : 'default'} className="navbar-btn">Celsuis</Button>
+              <Button onClick={this.changeTempDisplay} value="F" bsStyle={this.isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Fahrenheit</Button>
+              <Button onClick={this.changeTempDisplay} value="C" bsStyle={!this.isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Celsuis</Button>
             </li>
           </Nav>
         </Navbar.Collapse>

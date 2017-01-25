@@ -1,42 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 
 class SingleDayForcast extends Component {
-
-  getDate() {
-    return this.props.forecast.date;
-  }
-
-  getHigh() {
-    return this.props.display === 'F' ? this.props.forecast.high.fahrenheit : this.props.forecast.high.celsius;
-  }
-
-  getLow() {
-    return this.props.display === 'F' ? this.props.forecast.low.fahrenheit : this.props.forecast.low.celsius;
-  }
-
-  // this chould work, but for whatever reason doesn't!!
-  // when called, `this` is undefined, that shouldn't be the case, but it is
-  // get conditions() {
-  //   return this.props.forecast.conditions;
-  // }
-
-  getConditions() {
-    return this.props.forecast.conditions;
-  }
-
-  getDegreeSymbol() {
-    return this.props.display === 'F' ? '°F' : '°C';
-  }
-
   render() {
+    const date = this.props.forecast.date;
+    const high = this.props.display === 'F' ? this.props.forecast.high.fahrenheit : this.props.forecast.high.celsius;
+    const low = this.props.display === 'F' ? this.props.forecast.low.fahrenheit : this.props.forecast.low.celsius;
+    const conditions = this.props.forecast.conditions;
+    const degreeSymbol = this.props.display === 'F' ? '°F' : '°C';
+
     return (
       <div>
-        <div className="text-center">{this.getDate().weekday_short} {this.getDate().month} / {this.getDate().day}</div>
+        <div className="text-center">{date.weekday_short} {date.month} / {date.day}</div>
         <div className="text-center">
-          <span className="temp-high">{this.getHigh()} {this.getDegreeSymbol()}</span> | <span className="temp-low">{this.getLow()} {this.getDegreeSymbol()}</span>
+          <span className="temp-high">{high} {degreeSymbol}</span> | <span className="temp-low">{low} {degreeSymbol}</span>
         </div>
         <div className="text-center"><img src={this.props.forecast.icon_url} /></div>
-        <div className="text-center">{this.getConditions()}</div>
+        <div className="text-center">{conditions}</div>
       </div>
     );
   }

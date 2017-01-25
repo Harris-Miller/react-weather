@@ -4,11 +4,6 @@ import { Button, Badge, Glyphicon, Panel } from 'react-bootstrap';
 import noop from '../utils';
 
 class SelectedCities extends Component {
-
-  mapCities(exp) {
-    return this.props.cities.entrySeq().toArray().map(exp);
-  }
-
   removeCity(zwm) {
     this.props.removeCity(zwm);
   }
@@ -18,7 +13,7 @@ class SelectedCities extends Component {
       <div>
         {this.props.cities.size ? <Panel>
           <h3>Selected Cities</h3>
-          {this.mapCities(([zmw, city]) => (
+          {this.props.cities.entrySeq().toArray().map(([zmw, city]) => (
             <span key={zmw}>
               <Button bsStyle="primary" onClick={() => this.removeCity(zmw)}>
                 {city.location.city}, {city.location.state} <Badge><Glyphicon glyph="remove" /></Badge>

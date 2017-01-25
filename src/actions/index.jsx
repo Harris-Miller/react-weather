@@ -50,7 +50,7 @@ export const searchCity = textToSearch => dispatch => {
 };
 
 export const fetchForecast = zmw => dispatch => {
-  return ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/forecast/geolookup/hourly/q/zmw:${zmw}.json`, {
+  return ajax(`http://api.wunderground.com/api/eb9b4a708505f6e6/conditions/forecast/geolookup/hourly/q/zmw:${zmw}.json`, {
     dataType: 'jsonp',
     //jsonp: 'cb',
     method: 'GET',
