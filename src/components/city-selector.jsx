@@ -29,6 +29,9 @@ class CitySelector extends Component {
     }
   }
 
+  // the Typeahead compnent is not that great, doesn't work the way I want it too
+  // going to leave it in for now while I complete other parts of the site
+  // will come back to looking into replacing it with a better functioning component
   render() {
     return (
       <div>
