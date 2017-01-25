@@ -81,11 +81,11 @@ class App extends Component {
                   <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast} />
                 </Col>
               </Row>
-              {/*<Row>
+              <Row>
                 <Col md={12}>
                   <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
                 </Col>
-              </Row>*/}
+              </Row>
             </Col>
           </Row>
         </Grid>

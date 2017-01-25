@@ -79,11 +79,10 @@ class ForecastChart extends Component {
     // frist, remove all existing series, as we want to redraw them
     this.removeAllSeries();
 
-    // FCTTIME.epoch is in seconds, not milliseconds, thus the * 1000
     props.forecasts.forEach(forecast => {
       const newSeries = {
         name: `${forecast.location.city}, ${forecast.location.state}`,
-        data: forecast.hourly_forecast.map(hourly => [new Date(hourly.FCTTIME.epoch * 1000), props.display === 'F' ? +hourly.temp.english : +hourly.temp.metric])
+        data: forecast.hourly_forecast.map(hourly => [hourly.FCTTIME.epoch * 1000, props.display === 'F' ? +hourly.temp.english : +hourly.temp.metric])
       };
       chart.addSeries(newSeries, false);
     });
