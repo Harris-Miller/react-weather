@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormGroup, ControlLabel, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 class CitySelector extends Component {
@@ -11,7 +10,7 @@ class CitySelector extends Component {
 
     this.state = {
       data: []
-    }
+    };
   }
 
   selectCity([selection]) {
@@ -47,7 +46,7 @@ class CitySelector extends Component {
 
 CitySelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  searchResults: ImmutablePropTypes.list.isRequired,
+  searchResults: ImmutablePropTypes.list.isRequired
 };
 
 export default CitySelector;

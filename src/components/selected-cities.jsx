@@ -37,6 +37,6 @@ SelectedCities.propTypes = {
 
 SelectedCities.defaultTypes = {
   removeCity: noop
-}
+};
 
 export default SelectedCities;

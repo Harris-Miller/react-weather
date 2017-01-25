@@ -53,6 +53,6 @@ ForecastResults.PropTypes = {
 
 ForecastResults.defaultTypes = {
   removeCity: noop
-}
+};
 
 export default ForecastResults;

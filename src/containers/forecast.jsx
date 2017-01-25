@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { Row, Col, Button } from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateTempDisplay } from '../actions';
 import { mapStateToProps } from '../reducers';
