@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Panel } from 'react-bootstrap';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SingleDayForecast from './single-day-forecast';
-import { Card } from 'material-ui';
 
 class ForecastResults extends Component {
   getForecasts() {
@@ -26,7 +25,7 @@ class ForecastResults extends Component {
     return (
       <div>
         {this.mapForecasts(([zmw, forecast]) => (
-          <Card key={zmw}>
+          <Panel key={zmw}>
             <Row>
               <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>
                 {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
@@ -38,7 +37,7 @@ class ForecastResults extends Component {
                 <a onClick={e => this.removeForecast(e, zmw)}>Remove</a>
               </Col>
             </Row>
-          </Card>
+          </Panel>
         ))}
       </div>
     );

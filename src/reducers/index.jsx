@@ -2,6 +2,20 @@ import { combineReducers } from 'redux';
 import immutable from 'immutable';
 import { UPDATING_SEARCH_TEXT, FOUND_CITIES, ADD_FORECAST, REMOVE_FORECAST, UPDATE_DISPLAY_TEMP } from '../actions';
 
+// first, export this constant state-to-props method that will be used on all "connects"
+export const mapStateToProps = state => {
+  const { searchByCity, forecast, displayTemp } = state;
+
+  return {
+    textToSearch: searchByCity.get('textToSearch'),
+    cityResults: searchByCity.get('cityResults'),
+    selectedCities: forecast.get('selectedCities'),
+    display: displayTemp.get('display')
+  };
+};
+
+// now define all the reducers
+
 const searchByCity = (state = new immutable.Map({ textToSearch: '', cityResults: new immutable.Map() }), action) => {
   switch (action.type) {
     case (UPDATING_SEARCH_TEXT):

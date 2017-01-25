@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
+import { mapStateToProps } from '../reducers';
 import Navbar from '../components/navbar';
 import CitySelector from '../components/city-selector';
 import CityResults from '../components/city-results';
@@ -54,7 +55,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Navbar display={this.props.display} changeTempDisplay={this.changeTempDisplay} />
@@ -74,11 +74,11 @@ class App extends Component {
                   <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
                 </Col>
               </Row>
-              <Row>
+              {/*<Row>
                 <Col md={12}>
                   <ForecastChart forecasts={this.props.selectedCities} display={this.props.display} />
                 </Col>
-              </Row>
+              </Row>*/}
             </Col>
             <Col md={4}>
               <CityResults cityResults={this.props.cityResults} selectCity={this.fetchForecast.bind(this)} />
@@ -89,16 +89,5 @@ class App extends Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  const { searchByCity, forecast, displayTemp } = state;
-
-  return {
-    textToSearch: searchByCity.get('textToSearch'),
-    cityResults: searchByCity.get('cityResults'),
-    selectedCities: forecast.get('selectedCities'),
-    display: displayTemp.get('display')
-  };
-};
 
 export default connect(mapStateToProps)(App);

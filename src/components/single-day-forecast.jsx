@@ -31,12 +31,12 @@ class SingleDayForcast extends Component {
   render() {
     return (
       <div>
-        <div>{this.getDate().weekday_short} {this.getDate().month} / {this.getDate().day}</div>
-        <div>
+        <div className="text-center">{this.getDate().weekday_short} {this.getDate().month} / {this.getDate().day}</div>
+        <div className="text-center">
           <span className="temp-high">{this.getHigh()} {this.getDegreeSymbol()}</span> | <span className="temp-low">{this.getLow()} {this.getDegreeSymbol()}</span>
         </div>
-        <div><img src={this.props.forecast.icon_url} /></div>
-        <div>{this.getConditions()}</div>
+        <div className="text-center"><img src={this.props.forecast.icon_url} /></div>
+        <div className="text-center">{this.getConditions()}</div>
       </div>
     );
   }

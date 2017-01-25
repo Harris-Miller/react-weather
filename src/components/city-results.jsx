@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Card } from 'material-ui';
+import { Panel } from 'react-bootstrap';
 
 class CityResults extends Component {
   constructor(props, context) {
@@ -14,7 +14,7 @@ class CityResults extends Component {
 
   render() {
     return (
-      <Card>
+      <Panel>
         <h3>Results will display below<br/><small>(click to display forecast)</small></h3>
         <ul>
           {this.props.cityResults.map(city => (
@@ -23,7 +23,7 @@ class CityResults extends Component {
             </li>
           )).valueSeq()}
         </ul>
-      </Card>
+      </Panel>
     );
   }
 }
