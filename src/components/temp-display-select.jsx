@@ -24,6 +24,10 @@ class TempDisplaySelect extends Component {
 TempDisplaySelect.PropTypes = {
   display: PropTypes.string.isRequired,
   changeTempDisplay: PropTypes.func
-}
+};
+
+TempDisplaySelect.defaultProps = {
+  display: 'F'
+};
 
 export default TempDisplaySelect;

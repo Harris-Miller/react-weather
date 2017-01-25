@@ -12,8 +12,10 @@ import { throttle } from 'lodash';
 import immutable from 'immutable';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.changeTempDisplay = this.changeTempDisplay.bind(this);
 
     const throttledSearchResponse = throttle(value => {
       this.props.dispatch(updatingSearchText(value));
@@ -55,22 +57,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar display={this.props.display} changeTempDisplay={this.changeTempDisplay} />
         <Grid>
-          {this.props.children}
           <Row>
-            <Col md={12}>
-              <h1>Welcome to the Pairin Weather Search App!</h1>
-              <h3>Do a search for your city below to view the weather!</h3>
-            </Col>
+            {this.props.children}
           </Row>
           <Row>
             <Col md={8}>
               <Row>
-                <Col md={4}>
-                  <TempDisplaySelect display={this.props.display} changeTempDisplay={this.changeTempDisplay.bind(this)} />
-                </Col>
-                <Col md={4}>
+                <Col md={4} mdPush={4}>
                   <CitySelector onChange={this.onCitySelectChange} />
                 </Col>
               </Row>

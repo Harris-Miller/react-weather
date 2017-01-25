@@ -4,7 +4,7 @@
   "description": "Sample app for Pairin",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint webpack.config.js server.js ./src/**/*.js",
+    "lint": "eslint webpack.config.js server.js ./src/**/*.jsx",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
