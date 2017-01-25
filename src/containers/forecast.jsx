@@ -1,10 +1,26 @@
-import React, { Component } from 'react';
-import { Row, Col} from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { Row, Col } from 'react-bootstrap';
 
-export default () => (
-  <Row>
-    <Col sm={12}>
-      <h1>TODO: Forecast</h1>
-    </Col>
-  </Row>
-);
+class Forecast extends Component {
+
+  render() {
+    console.log(this.props);
+    return (
+      <Row>
+        <Col sm={12}>
+          <h1>TODO: Forecast</h1>
+        </Col>
+      </Row>
+    );
+  }
+}
+
+Forecast.propTypes = {
+
+};
+
+Forecast.defaultProps = {
+
+};
+
+export default Forecast;

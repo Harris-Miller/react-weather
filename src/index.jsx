@@ -9,7 +9,6 @@ import Index from './containers/index';
 import Forecast from './containers/forecast';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import immutable from 'immutable';
 
 require('./style.less');
 
@@ -19,15 +18,15 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider>
+  <MuiThemeProvider>
+    <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Index} />
           <Route path="forecast" component={Forecast} />
         </Route>
       </Router>
-    </MuiThemeProvider>
-  </Provider>,
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 );

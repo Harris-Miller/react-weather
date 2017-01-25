@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import React from 'react';
+import { Col } from 'react-bootstrap';
 
 export default () => (
   <Col sm={12}>

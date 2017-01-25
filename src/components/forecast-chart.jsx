@@ -70,7 +70,7 @@ class ForecastChart extends Component {
     // new Date(year, month[, date[, hours[, minutes[, seconds[, milliseconds]]]]]);
     return Date.UTC(
       +FCTTIME.year,
-      (+FCTTIME.mon)-1,
+      (+FCTTIME.mon) - 1,
       +FCTTIME.mday,
       (+FCTTIME.hour)
     );
@@ -85,7 +85,7 @@ class ForecastChart extends Component {
 
   refreshSeries(props) {
     const chart = this.getChart();
-    
+
     // frist, remove all existing series, as we want to redraw them
     this.removeAllSeries();
 
@@ -118,11 +118,11 @@ class ForecastChart extends Component {
       </div>
     );
   }
-};
+}
 
 ForecastChart.PropTypes = {
   forecasts: ImmutablePropTypes.map.isRequired,
-  display: PropTypes.string.isRequired,
+  display: PropTypes.string.isRequired
 };
 
 export default ForecastChart;

@@ -25,7 +25,7 @@ const forecast = (state = new immutable.Map({ selectedCities: new immutable.Map(
   }
 };
 
-const displayTemp = (state = new immutable.Map({ display: 'F'}), action) => {
+const displayTemp = (state = new immutable.Map({ display: 'F' }), action) => {
   switch (action.type) {
     case (UPDATE_DISPLAY_TEMP):
       return state.set('display', action.display);

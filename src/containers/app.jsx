@@ -6,10 +6,8 @@ import Navbar from '../components/navbar';
 import CitySelector from '../components/city-selector';
 import CityResults from '../components/city-results';
 import ForecastResults from '../components/forecast-results';
-import TempDisplaySelect from '../components/temp-display-select';
 import ForecastChart from '../components/forecast-chart';
 import { throttle } from 'lodash';
-import immutable from 'immutable';
 
 class App extends Component {
   constructor(props) {
@@ -55,6 +53,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Navbar display={this.props.display} changeTempDisplay={this.changeTempDisplay} />

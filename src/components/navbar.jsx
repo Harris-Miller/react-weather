@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-import TempDisplaySelect from './temp-display-select';
 import { noop } from '../utils/common-functions';
 
 class WeatherNavbar extends Component {
