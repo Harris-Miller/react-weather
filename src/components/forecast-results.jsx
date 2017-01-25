@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Col, Row, Panel } from 'react-bootstrap';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SingleDayForecast from './single-day-forecast';
+import noop from '../utils';
 
 class ForecastResults extends Component {
   getForecasts() {
@@ -49,5 +50,9 @@ ForecastResults.PropTypes = {
   display: PropTypes.string.isRequired,
   removeForecast: PropTypes.func
 };
+
+ForecastResults.defaultTypes = {
+  removeCity: noop
+}
 
 export default ForecastResults;

@@ -47,7 +47,7 @@ class CitySelector extends Component {
 
 CitySelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  searchResults: ImmutablePropTypes.map.isRequired,
+  searchResults: ImmutablePropTypes.list.isRequired,
 };
 
 export default CitySelector;

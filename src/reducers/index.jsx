@@ -16,7 +16,7 @@ export const mapStateToProps = state => {
 
 // now define all the reducers
 
-const searchByCity = (state = new immutable.Map({ textToSearch: '', citySearchResults: new immutable.Map() }), action) => {
+const searchByCity = (state = new immutable.Map({ textToSearch: '', citySearchResults: new immutable.List() }), action) => {
   switch (action.type) {
     case (UPDATING_SEARCH_TEXT):
       return state.set('textToSearch', action.textToSearch);

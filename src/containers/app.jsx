@@ -16,6 +16,8 @@ class App extends Component {
 
     this.changeTempDisplay = this.changeTempDisplay.bind(this);
     this.onCitySelectChange = this.onCitySelectChange.bind(this);
+    this.fetchForecast = this.fetchForecast.bind(this);
+    this.removeForecast = this.removeForecast.bind(this);
 
     this.throttledSearchResponse = throttle(value => {
       this.props.dispatch(updatingSearchText(value));
@@ -61,7 +63,7 @@ class App extends Component {
         <Grid>
           <Row>
             <Col md={12}>
-              <SelectedCities />
+              <SelectedCities cities={this.props.selectedCities} removeCity={this.removeForecast} />
             </Col>
           </Row>
           <Row>
@@ -71,12 +73,12 @@ class App extends Component {
             <Col md={8}>
               <Row>
                 <Col md={4} mdPush={4}>
-                  <CitySelector onChange={this.onCitySelectChange} searchResults={this.props.citySearchResults} selectCity={this.fetchForecast.bind(this)} />
+                  <CitySelector onChange={this.onCitySelectChange} searchResults={this.props.citySearchResults} selectCity={this.fetchForecast} />
                 </Col>
               </Row>
               <Row>
                 <Col md={12}>
-                  <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast.bind(this)} />
+                  <ForecastResults forecasts={this.props.selectedCities} display={this.props.display} removeForecast={this.removeForecast} />
                 </Col>
               </Row>
               {/*<Row>
