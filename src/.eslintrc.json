@@ -1,14 +1,10 @@
 {
 	"parserOptions": {
-		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true
-		}
+		"sourceType": "module"
 	},
-	"extends": ["eslint-config-harris/browser"],
-	"plugins": ["react"],
-	"rules": {
-		"react/jsx-uses-react": "error",
-		"react/jsx-uses-vars": "error"
-	}
+	"extends": [
+		"eslint-config-harris/browser",
+    "eslint-config-harris/es6",
+		"eslint-config-harris/react"
+	]
 }

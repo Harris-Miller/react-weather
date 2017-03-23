@@ -4,15 +4,19 @@ import { Link } from 'react-router';
 import { noop } from '../utils';
 
 class WeatherNavbar extends Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    display: PropTypes.string,
+    changeTempDisplay: PropTypes.func
+  };
 
-    this.changeTempDisplay = this.changeTempDisplay.bind(this);
-  }
+  static defaultProps = {
+    display: 'F',
+    changeTempDisplay: noop
+  };
 
-  changeTempDisplay(e) {
+  changeTempDisplay = e => {
     this.props.changeTempDisplay(e.target.value);
-  }
+  };
 
   /**
    * Note:
@@ -39,8 +43,8 @@ class WeatherNavbar extends Component {
           </Nav>
           <Nav pullRight>
             <li>
-              <Button onClick={this.changeTempDisplay} value="F" bsStyle={this.isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Fahrenheit</Button>
-              <Button onClick={this.changeTempDisplay} value="C" bsStyle={!this.isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Celsuis</Button>
+              <Button onClick={this.changeTempDisplay} value="F" bsStyle={isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Fahrenheit</Button>
+              <Button onClick={this.changeTempDisplay} value="C" bsStyle={!isFahrenheit ? 'primary' : 'default'} className="navbar-btn">Celsuis</Button>
             </li>
           </Nav>
         </Navbar.Collapse>
@@ -48,15 +52,5 @@ class WeatherNavbar extends Component {
     );
   }
 }
-
-WeatherNavbar.propTypes = {
-  display: PropTypes.string,
-  changeTempDisplay: PropTypes.func
-};
-
-WeatherNavbar.defaultProps = {
-  display: 'F',
-  changeTempDisplay: noop
-};
 
 export default WeatherNavbar;

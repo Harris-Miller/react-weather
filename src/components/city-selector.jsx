@@ -3,19 +3,18 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 class CitySelector extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    searchResults: ImmutablePropTypes.list.isRequired,
+    selectCity: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
-
-    this.selectCity = this.selectCity.bind(this);
 
     this.state = {
       data: []
     };
-  }
-
-  selectCity([selection]) {
-    this.props.selectCity(selection.id);
-    this.setState({ data: [] });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,6 +27,11 @@ class CitySelector extends Component {
       });
     }
   }
+
+  selectCity = ([selection]) => {
+    this.props.selectCity(selection.id);
+    this.setState({ data: [] });
+  };
 
   // the Typeahead compnent is not that great, doesn't work the way I want it too
   // going to leave it in for now while I complete other parts of the site
@@ -46,10 +50,5 @@ class CitySelector extends Component {
     );
   }
 }
-
-CitySelector.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  searchResults: ImmutablePropTypes.list.isRequired
-};
 
 export default CitySelector;

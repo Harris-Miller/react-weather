@@ -5,6 +5,16 @@ import SingleDayForecast from './single-day-forecast';
 import noop from '../utils';
 
 class ForecastResults extends Component {
+  static propTypes = {
+    forecasts: ImmutablePropTypes.map.isRequired,
+    display: PropTypes.string.isRequired,
+    removeForecast: PropTypes.func
+  };
+
+  static defaultProps = {
+    removeForecast: noop
+  };
+
   removeForecast(e, zmw) {
     e.preventDefault();
     this.props.removeForecast(zmw);
@@ -20,13 +30,13 @@ class ForecastResults extends Component {
           <Panel key={zmw}>
             <Row>
               <Col md={2}>{forecast.location.city}, {forecast.location.state}</Col>
-                {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
-                  <Col md={2} key={forecastday.date.epoch}>
-                    <SingleDayForecast forecast={forecastday} display={this.props.display} />
-                  </Col>
-                ))}
+              {forecast.forecast.simpleforecast.forecastday.map(forecastday => (
+                <Col md={2} key={forecastday.date.epoch}>
+                  <SingleDayForecast forecast={forecastday} display={this.props.display} />
+                </Col>
+              ))}
               <Col md={2}>
-                <a onClick={e => this.removeForecast(e, zmw)}>Remove</a>
+                <a href="#" onClick={e => this.removeForecast(e, zmw)}>Remove</a>
               </Col>
             </Row>
           </Panel>
@@ -35,15 +45,5 @@ class ForecastResults extends Component {
     );
   }
 }
-
-ForecastResults.PropTypes = {
-  forecasts: ImmutablePropTypes.map.isRequired,
-  display: PropTypes.string.isRequired,
-  removeForecast: PropTypes.func
-};
-
-ForecastResults.defaultTypes = {
-  removeCity: noop
-};
 
 export default ForecastResults;

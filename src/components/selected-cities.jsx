@@ -4,6 +4,15 @@ import { Button, Badge, Glyphicon, Panel } from 'react-bootstrap';
 import noop from '../utils';
 
 class SelectedCities extends Component {
+  static propTypes = {
+    cities: ImmutablePropTypes.map.isRequired,
+    removeCity: PropTypes.func
+  };
+
+  static defaultProps = {
+    removeCity: noop
+  };
+
   removeCity(zwm) {
     this.props.removeCity(zwm);
   }
@@ -26,14 +35,5 @@ class SelectedCities extends Component {
     );
   }
 }
-
-SelectedCities.propTypes = {
-  cities: ImmutablePropTypes.map.isRequired,
-  removeCity: PropTypes.func
-};
-
-SelectedCities.defaultTypes = {
-  removeCity: noop
-};
 
 export default SelectedCities;

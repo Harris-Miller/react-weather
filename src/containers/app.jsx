@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
@@ -11,36 +12,19 @@ import ForecastChart from '../components/forecast-chart';
 import { throttle } from 'lodash';
 
 class App extends Component {
+  static propTypes = {
+    display: PropTypes.string.isRequired,
+    textToSearch: PropTypes.string.isRequired,
+    selectedCities: ImmutablePropTypes.list.isRequired,
+    citySearchResults: ImmutablePropTypes.list.isRequired
+  };
+
   constructor(props) {
     super(props);
-
-    this.changeTempDisplay = this.changeTempDisplay.bind(this);
-    this.onCitySelectChange = this.onCitySelectChange.bind(this);
-    this.fetchForecast = this.fetchForecast.bind(this);
-    this.removeForecast = this.removeForecast.bind(this);
 
     this.throttledSearchResponse = throttle(value => {
       this.props.dispatch(updatingSearchText(value));
     }, 600);
-  }
-
-  onCitySelectChange(value) {
-    this.throttledSearchResponse(value);
-  }
-
-  fetchForecast(zmw) {
-    // only if Forecast has not yet been fetched
-    if (!this.props.selectedCities.has(zmw)) {
-      this.props.dispatch(fetchForecast(zmw));
-    }
-  }
-
-  removeForecast(zmw) {
-    this.props.dispatch(removeForecast(zmw));
-  }
-
-  changeTempDisplay(display) {
-    this.props.dispatch(updateTempDisplay(display));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,6 +39,25 @@ class App extends Component {
     //   dispatch(fetchForecast(selectedCities));
     // }
   }
+
+  onCitySelectChange = value => {
+    this.throttledSearchResponse(value);
+  };
+
+  fetchForecast = zmw => {
+    // only if Forecast has not yet been fetched
+    if (!this.props.selectedCities.has(zmw)) {
+      this.props.dispatch(fetchForecast(zmw));
+    }
+  };
+
+  removeForecast = zmw => {
+    this.props.dispatch(removeForecast(zmw));
+  };
+
+  changeTempDisplay = display => {
+    this.props.dispatch(updateTempDisplay(display));
+  };
 
   render() {
     return (

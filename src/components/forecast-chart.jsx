@@ -31,10 +31,38 @@ const configConstants = {
 };
 
 class ForecastChart extends Component {
+  static propTypes = {
+    forecasts: ImmutablePropTypes.map.isRequired,
+    display: PropTypes.string.isRequired
+  };
+
   constructor(props, context) {
     super(props, context);
     this.config = Object.assign({}, configConstants);
     // this.assignTestData();
+  }
+
+  componentDidMount() {
+    this.setYAxisTitle(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.forecasts.equals(this.props.forecasts)) { // eslint-disable-line react/prop-types
+      this.refreshSeries(nextProps);
+    }
+
+    if (nextProps.display !== this.props.display) {
+      this.setYAxisTitle(nextProps);
+      this.refreshSeries(nextProps);
+    }
+  }
+
+  setYAxisTitle(props) {
+    this.getChart().yAxis[0].update({ title: { text: `Temperature ${props.display === 'F' ? '°F' : '°C'}` } }, true);
+  }
+
+  getChart() {
+    return this.refs.chart.getChart();
   }
 
   assignTestData() {
@@ -52,18 +80,6 @@ class ForecastChart extends Component {
         data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
       }]
     });
-  }
-
-  getChart() {
-    return this.refs.chart.getChart();
-  }
-
-  componentDidMount() {
-    this.setYAxisTitle(this.props);
-  }
-
-  setYAxisTitle(props) {
-    this.getChart().yAxis[0].update({ title: { text: `Temperature ${props.display === 'F' ? '°F' : '°C'}` } }, true);
   }
 
   removeAllSeries() {
@@ -90,29 +106,13 @@ class ForecastChart extends Component {
     chart.redraw();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.forecasts.equals(this.props.forecasts)) {
-      this.refreshSeries(nextProps);
-    }
-
-    if (nextProps.display !== this.props.display) {
-      this.setYAxisTitle(nextProps);
-      this.refreshSeries(nextProps);
-    }
-  }
-
   render() {
     return (
       <div>
-        <ReactHighcharts config={this.config} ref="chart" neverReflow={true}></ReactHighcharts>
+        <ReactHighcharts config={this.config} ref="chart" neverReflow />
       </div>
     );
   }
 }
-
-ForecastChart.PropTypes = {
-  forecasts: ImmutablePropTypes.map.isRequired,
-  display: PropTypes.string.isRequired
-};
 
 export default ForecastChart;

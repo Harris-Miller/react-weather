@@ -1,27 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { updateTempDisplay } from '../actions';
+// import { updateTempDisplay } from '../actions';
 import { mapStateToProps } from '../reducers';
 
-class Forecast extends Component {
-  render() {
-    return (
-      <Row>
-        <Col sm={12}>
-          <h1>TODO: Forecast</h1>
-        </Col>
-      </Row>
-    );
-  }
-}
-
-Forecast.propTypes = {
-
-};
-
-Forecast.defaultProps = {
-
-};
+const Forecast = () => (
+  <Row>
+    <Col sm={12}>
+      <h1>TODO: Forecast</h1>
+    </Col>
+  </Row>
+);
 
 export default connect(mapStateToProps)(Forecast);

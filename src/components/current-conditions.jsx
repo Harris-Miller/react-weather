@@ -1,19 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import React from 'react';
 
-class CurrentConditions {
-
-  render() {
-
-  }
-}
-
-CurrentConditions.propTypes = {
-
-};
-
-CurrentConditions.defaultProps = {
-
-};
+const CurrentConditions = () => (
+  <div>TODO</div>
+);
 
 export default CurrentConditions;
