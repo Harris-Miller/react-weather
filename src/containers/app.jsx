@@ -15,7 +15,7 @@ class App extends Component {
   static propTypes = {
     display: PropTypes.string.isRequired,
     textToSearch: PropTypes.string.isRequired,
-    selectedCities: ImmutablePropTypes.list.isRequired,
+    selectedCities: ImmutablePropTypes.map.isRequired,
     citySearchResults: ImmutablePropTypes.list.isRequired
   };
 

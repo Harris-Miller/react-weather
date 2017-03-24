@@ -36,9 +36,9 @@ class ForecastChart extends Component {
     display: PropTypes.string.isRequired
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.config = Object.assign({}, configConstants);
+  constructor(props) {
+    super(props);
+    this.config = { ...configConstants };
     // this.assignTestData();
   }
 
@@ -62,7 +62,7 @@ class ForecastChart extends Component {
   }
 
   getChart() {
-    return this.refs.chart.getChart();
+    return this.chart.getChart();
   }
 
   assignTestData() {
@@ -109,7 +109,7 @@ class ForecastChart extends Component {
   render() {
     return (
       <div>
-        <ReactHighcharts config={this.config} ref="chart" neverReflow />
+        <ReactHighcharts config={this.config} ref={node => this.chart = node} neverReflow />
       </div>
     );
   }
