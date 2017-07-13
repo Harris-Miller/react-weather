@@ -36,7 +36,7 @@ class ForecastResults extends Component {
                 </Col>
               ))}
               <Col md={2}>
-                <a href="#" onClick={e => this.removeForecast(e, zmw)}>Remove</a>
+                <button onClick={e => this.removeForecast(e, zmw)}>Remove</button>
               </Col>
             </Row>
           </Panel>

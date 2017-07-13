@@ -1468,9 +1468,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-harris@git+https://github.com/Harris-Miller/node-eslint-config-harris.git":
-  version "1.0.0-rc.1"
-  resolved "git+https://github.com/Harris-Miller/node-eslint-config-harris.git#54e7defd5d8d3c6a74c4d4543928811df9c30a6e"
+eslint-config-harris@^1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-harris/-/eslint-config-harris-1.0.0-rc.2.tgz#227972c82b4675a5b69c86dd4125d28212439bfc"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -1980,7 +1980,7 @@ hawk@~3.1.3:
     sntp "1.x.x"
 
 highcharts@^5.0.0:
-  version v5.0.9
+  version "5.0.9"
   resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-5.0.9.tgz#456e2c25cbf72440528619e092a48c12b9898d30"
 
 history@^3.0.0:

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Grid, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { throttle } from 'lodash';
 import { updatingSearchText, searchCity, fetchForecast, removeForecast, updateTempDisplay } from '../actions';
 import { mapStateToProps } from '../reducers';
 import Navbar from '../components/navbar';
@@ -9,7 +10,6 @@ import SelectedCities from '../components/selected-cities';
 import CitySelector from '../components/city-selector';
 import ForecastResults from '../components/forecast-results';
 import ForecastChart from '../components/forecast-chart';
-import { throttle } from 'lodash';
 
 class App extends Component {
   static propTypes = {

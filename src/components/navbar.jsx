@@ -38,8 +38,8 @@ class WeatherNavbar extends Component {
         <Navbar.Collapse>
           <Nav>
             <li><Link to="forecast" role="button">Forecast</Link></li>
-            <li><a href="#" role="button">Link 2</a></li>
-            <li><a href="#" role="button">Link 3</a></li>
+            <li><a href="/" role="button">Link 2</a></li>
+            <li><a href="/" role="button">Link 3</a></li>
           </Nav>
           <Nav pullRight>
             <li>

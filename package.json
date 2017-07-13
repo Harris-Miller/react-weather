@@ -23,7 +23,7 @@
     "bootstrap": "^3.3.7",
     "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
-    "eslint-config-harris": "git+https://github.com/Harris-Miller/node-eslint-config-harris.git",
+    "eslint-config-harris": "^1.0.0-rc.2",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
